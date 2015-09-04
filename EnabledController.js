@@ -93,20 +93,37 @@ app.config(['$httpProvider', function ($httpProvider) {
 
 app.controller('EnabledController', function($scope, myService) {
 
+	$scope.history = [];
+
 	myService.loadData().then(function() {
     	$scope.displaydata = myService.getCurrentData();
+		$scope.history.push($scope.displaydata);
 	});
 
 	$scope.displaydata = myService.getCurrentData();
+
+
     function changeSection(section)
     {
-    	$scope.displaydata = section;
-    	console.log(-"----------------------");
-    	console.log(-"----------------------");
-    	console.log(-"----------------------");
-    	console.log(-"----------------------");
-    	console.log($scope.displaydata);
-    	console.log("new controller data");
+    	if(typeof section === 'undefined')
+    	{
+    		var length = $scope.history.length;
+    		if(length == 1)
+    		{
+    			$scope.displaydata = $scope.history[0];
+    		}
+    		else
+    		{
+    			$scope.history.splice(length-1,1);
+    			$scope.displaydata = $scope.history[length-2];
+    		}
+    	}
+    	else
+    	{
+    		$scope.history.push(section);
+	    	$scope.displaydata = section;
+	    	console.log($scope.displaydata);
+    	}
     }
 	$scope.changeSection = changeSection;
 

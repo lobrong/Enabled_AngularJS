@@ -8,6 +8,11 @@
 <div ng-app="myApp" ng-controller="EnabledController"> 
 
 	<h1 ng-bind="displaydata.name"></h1>
+	<p ng-if="displaydata.description">Description: {{displaydata.description}}</p>
+	<p ng-if="displaydata.url">Url: {{displaydata.url}}</p>
+	<p ng-if="displaydata.phone">Phone: {{displaydata.phone}}</p>
+	<p ng-if="displaydata.email">Email: {{displaydata.email}}</p>
+	<p ng-if="displaydata.point_of_contact">Point of contact: {{displaydata.point_of_contact}}</p>
 
 	<h3 ng-if="displaydata.sections">Sections</h3>
 
@@ -17,12 +22,18 @@
 	  </li>
 	</ul>
 	
-	<h3 ng-if="displaydata.contacts">Contacts</h3>
 	<ul>
 	  <li ng-repeat="contact in displaydata.contacts">
 	    <button ng-click="changeSection(contact)">{{ contact.name }}</button>
 	  </li>
 	</ul>
+
+	
+
+	</ul>
+
+
+	<button ng-click="changeSection()"> Back </button>
 </div>
 
 <script src="enabledController.js"> </script>
