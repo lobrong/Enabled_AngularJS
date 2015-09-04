@@ -12,13 +12,20 @@ app.factory('myService', function($http,$q) {
 	var current = [];
 
 	myService.async = function() {
-    $http.get('test.json')
-    .success(function (d) {
-      data = d;
-      console.log(d);
-      deffered.resolve();
-    });
-    return deffered.promise;
+		if(!clipsal)
+		{
+		    $http.get('test.json')
+		    .success(function (d) {
+		      data = d;
+		      console.log(d);
+		      deffered.resolve();
+		    });
+		    return deffered.promise;
+		}
+		else
+		{
+			return current;
+		}
   };
 
 	  	myService.loadData = function() 
@@ -91,18 +98,17 @@ app.controller('EnabledController', function($scope, myService) {
 	});
 
 	$scope.displaydata = myService.getCurrentData();
-
-    function updateDisplayData1(msg)
+    function changeSection(section)
     {
-    	$scope.displaydata = myService.updateData(msg);
+    	$scope.displaydata = section;
     	console.log(-"----------------------");
     	console.log(-"----------------------");
     	console.log(-"----------------------");
     	console.log(-"----------------------");
-    	console.log(JSON.stringify($scope.displaydata));
+    	console.log($scope.displaydata);
     	console.log("new controller data");
     }
-	$scope.updateDisplayData = updateDisplayData1;
+	$scope.changeSection = changeSection;
 
 });
 

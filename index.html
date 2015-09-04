@@ -7,12 +7,22 @@
 
 <div ng-app="myApp" ng-controller="EnabledController"> 
 
+	<h1 ng-bind="displaydata.name"></h1>
+
+	<h3 ng-if="displaydata.sections">Sections</h3>
+
 	<ul>
-	  <li ng-repeat="y in displaydata.sections">
-	    <button ng-click="updateDisplayData(y.name)">{{ y.name }}</button>
+	  <li ng-repeat="section in displaydata.sections">
+	    <button ng-click="changeSection(section)">{{ section.name }}</button>
 	  </li>
 	</ul>
-
+	
+	<h3 ng-if="displaydata.contacts">Contacts</h3>
+	<ul>
+	  <li ng-repeat="contact in displaydata.contacts">
+	    <button ng-click="changeSection(contact)">{{ contact.name }}</button>
+	  </li>
+	</ul>
 </div>
 
 <script src="enabledController.js"> </script>
