@@ -8,8 +8,8 @@
 <div ng-app="myApp" ng-controller="EnabledController"> 
 
 	<ul>
-	  <li ng-repeat="y in clipsal.sections">
-	    <button ng-click="updateDisplayData()">{{ y.name }}</button>
+	  <li ng-repeat="y in displaydata.sections">
+	    <button ng-click="updateDisplayData(y.name)">{{ y.name }}</button>
 	  </li>
 	</ul>
 
